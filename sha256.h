@@ -1,6 +1,6 @@
 //Header-only version of http://www.zedwood.com/article/cpp-sha256-function
 #include <fstream>
-#include <string>
+#include <cstring>
 #define SHA2_SHFR(x, n)	(x >> n)
 #define SHA2_ROTR(x, n)   ((x >> n) | (x << ((sizeof(x) << 3) - n)))
 #define SHA2_ROTL(x, n)   ((x << n) | (x >> ((sizeof(x) << 3) - n)))
@@ -146,7 +146,7 @@ std::string sha256hash(std::string input)
 	SHA256 ctx = SHA256();
 	ctx.init();
 	ctx.update( (unsigned char*)input.c_str(), input.length());
-	ctx.final(digest);
+	ctx._final(digest);
  
 	char buf[2*SHA256::DIGEST_SIZE+1];
 	buf[2*SHA256::DIGEST_SIZE] = 0;
